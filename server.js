@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const db = require("./db/db.json");
 const fs = require("fs");
 
@@ -22,6 +23,7 @@ app.get("/notes", (req, res) =>
     res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
+// listens for incoming connections to port
 app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
 );
