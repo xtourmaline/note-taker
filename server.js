@@ -12,10 +12,12 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(express.static("public"));
 
+// directs user to notes.html file
 app.get("/notes", (req, res) =>
     res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
+// get request to read existing notes
 app.get("/api/notes", (req, res) =>
     fs.readFile(dbPath, (err, data) => {
         if (err) {
@@ -27,6 +29,7 @@ app.get("/api/notes", (req, res) =>
     })
 );
 
+// post request to create new notes
 app.post("/api/notes", (req, res) => {
     let note = req.body;
     note.id = uuidv4();
@@ -52,6 +55,7 @@ app.post("/api/notes", (req, res) => {
     });
 });
 
+// detele request to delete notes based on the id
 app.delete("/api/notes/:id", (req, res) => {
     const id = req.params.id;
 
@@ -64,6 +68,7 @@ app.delete("/api/notes/:id", (req, res) => {
         let deletedNote = null;
         let db = JSON.parse(data);
         
+        // goes through each object in array to find object with same id, then gets deleted
         for (let i in db) {
             if (db[i].id === id) {
                 deletedNote = db[i];
