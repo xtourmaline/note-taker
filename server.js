@@ -1,10 +1,13 @@
 const express = require("express");
+const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
 const path = require('path');
 const db = require("./db/db.json");
-const fs = require("fs");
 
 const app = express();
 const PORT = 3001;
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -22,7 +25,12 @@ app.get('/api/notes', (req, res) =>
             return;
         }
         res.json(JSON.parse(data));
-}));
+    })
+);
+
+// app.post('/api/notes', (req, res) =>
+
+// );
 
 app.get("*", (req, res) =>
     res.sendFile(path.join(__dirname, "/public/index.html"))
