@@ -16,7 +16,7 @@ app.get("/notes", (req, res) =>
     res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
-app.get('/api/notes', (req, res) =>
+app.get("/api/notes", (req, res) =>
     fs.readFile(dbPath, (err, data) => {
         if (err) {
             console.log("Error reading JSON file.");
@@ -27,7 +27,7 @@ app.get('/api/notes', (req, res) =>
     })
 );
 
-app.post('/api/notes', (req, res) => {
+app.post("/api/notes", (req, res) => {
     let note = req.body;
     note.id = uuidv4();
 
@@ -50,6 +50,37 @@ app.post('/api/notes', (req, res) => {
             }
         });
     });
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+    const id = req.params.id;
+
+    fs.readFile(dbPath, (err, data) => {
+        if (err) {
+            console.log("Error reading JSON file.");
+            return;
+        }
+
+        let deletedNote = null;
+        let db = JSON.parse(data);
+        
+        for (let i in db) {
+            if (db[i].id === id) {
+                deletedNote = db[i];
+                db.splice(i, 1);
+            }
+        }
+
+        fs.writeFile(dbPath, JSON.stringify(db), (err) => {
+            if (err) {
+                console.log("Error in saving database", err);
+            }
+            else {
+                console.log("Deleted from database!");
+                res.status(200).json(deletedNote);
+            }
+        });
+    })
 });
 
 app.get("*", (req, res) =>
