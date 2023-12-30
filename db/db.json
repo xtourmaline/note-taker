@@ -1,7 +1,1 @@
-[
-    {
-        "id": "1",
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+[{"title":"Hello world","text":"Coding is awesome!","id":"d1c54612-28fa-4e31-932b-ee91114f612b"},{"title":"Hello world","text":"Coding is awesome!","id":"fa0a187c-0581-4947-bb97-7427b91cde52"},{"title":"Hello world","text":"Coding is awesome!","id":"fe1ebd40-7f96-4bca-8c42-c5ec0f0bf4f5"},{"title":"Hello world","text":"Coding is awesome!","id":"147ca9ee-5710-434e-9adf-d6f6898f362f"},{"title":"Hello world","text":"Coding is awesome!","id":"4d62f0b2-9470-46aa-b0c5-3a0a4b2058a8"},{"title":"This is a test","text":"I hate this","id":"d8d103ee-2b8e-45a9-8381-79eafe9106c5"}]
