@@ -5,7 +5,7 @@ const path = require('path');
 const dbPath = path.join(__dirname, "/db/db.json");
 
 const app = express();
-const PORT = 80;
+const PORT = 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
